@@ -4,8 +4,13 @@ import Menu from "./Menu";
 
 function Header({ menu, setMenu, options, darkState, toggleDarkMode }) {
   return (
-    <div className="flex p-4 justify-between items-center z-10 fixed top-0 w-full h-[68px] dark:bg-black bg-white">
-      <a href='#' className="text-[30px] font-bold dark:text-white">Title</a>
+    <div className="flex  justify-between items-center z-10 fixed top-0 w-full h-[68px] dark:bg-black bg-white">
+       <Menu menu={menu}
+          setMenu={setMenu}
+          options={options}
+          toggleDarkMode={toggleDarkMode}
+          darkState={darkState}/>
+      <a href='#' className="text-[30px] ml-4 font-bold dark:text-white">Title</a>
       <div className="hidden text-[16px] text-[#4B5563] dark:text-[#D1D5DB] gap-6 web:flex items-center">
         {options.map((item) => {
           return (
@@ -16,7 +21,7 @@ function Header({ menu, setMenu, options, darkState, toggleDarkMode }) {
         })}
         <div className="h-[24px] w-[1px]"></div>
         <Image
-          src={darkState ? "/sun.svg" : '/moon.svg'}
+          src={!darkState ? "/sun.svg" : '/moon.svg'}
           width={24}
           height={24}
           alt="menu"
@@ -32,7 +37,7 @@ function Header({ menu, setMenu, options, darkState, toggleDarkMode }) {
         width={24}
         height={24}
         alt="menu"
-        className="web:hidden"
+        className="web:hidden mr-4"
         onClick={() => setMenu((prev) => !prev)}
       />
     </div>

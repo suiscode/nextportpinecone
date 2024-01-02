@@ -8,18 +8,20 @@ function Skills({darkState}) {
     { img: "./icon-react.svg", title: "React" },
     { img: "./icon-nextjs.svg", title: "Next.js" },
     { img: "./icon-nodejs.svg", title: "Node.js" },
-    { img: darkState ? "./icon-express.svg" : "./icon-express-dark.svg", title: "Expres.js" },
+    { img: !darkState ? "./icon-express.svg" : "./icon-express-dark.svg", title: "Expres.js" },
     { img: "./icon-nest.svg", title: "Nest" },
-    { img: darkState ? "./icon-socket.svg" : "./icon-socket-dark.svg", title: "Socket" },
+    { img: !darkState ? "./icon-socket.svg" : "./icon-socket-dark.svg", title: "Socket" },
     { img: "./icon-postgresql.svg", title: "Postgresql" },
     { img: "./icon-mongodb.svg", title: "MongoDB" },
     { img: "./icon-sass.svg", title: "Sass" },
     { img: "./icon-tailwindcss.svg", title: "Tailwindcss" },
     { img: "./icon-figma.svg", title: "Figma" },
-    { img: darkState ? "./icon-cypress.svg" : "./icon-cypress-dark.svg", title: "Cypress" },
+    { img: !darkState ? "./icon-cypress.svg" : "./icon-cypress-dark.svg", title: "Cypress" },
     { img: "./icon-storybook.svg", title: "Storybook" },
     { img: "./icon-git.svg", title: "Git" },
   ];
+
+  console.log();
 
   return (
     <div className="px-4 py-16 text-[#4B5563] flex flex-col items-center dark:bg-[#030712] dark:text-[#D1D5DB]">

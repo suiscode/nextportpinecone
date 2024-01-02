@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import Menu from "@/components/Menu";
@@ -12,26 +11,28 @@ import Contacts from "@/components/Contacts";
 export default function Home() {
   const [menu, setMenu] = useState(false);
 
-  
+  const isLocalStorageAvailable =
+  typeof window !== "undefined" && window.localStorage;
 
-  // const isLocalStorageAvailable = typeof window !== 'undefined' && window.localStorage;
-  // const storedDarkState = isLocalStorageAvailable ? localStorage.getItem('DARKSTATE') : null;
-  // const initialDarkState = storedDarkState ? JSON.parse(storedDarkState) : true;
-  const [darkState, setDarkState] = useState(true);
+const storedDarkState = isLocalStorageAvailable
+  ? JSON.parse(localStorage.getItem("DARKSTATE")) || false
+  : false;
+
+const [darkState, setDarkState] = useState(storedDarkState);
+
+const toggleDarkMode = () => {
+  setDarkState((prev) => {
+    localStorage.setItem("DARKSTATE", JSON.stringify(!prev));
+    return !prev;
+  });
+};
 
   const options = ["About", "Work", "Testimonials", "Contact"];
 
-  useEffect(()=>{
-    localStorage.setItem("DARKSTATE", darkState);
-  },[darkState])
-
-  const toggleDarkMode = () => {
-    setDarkState((prev) => !prev);
-  };
-
+  
   return (
-    <main className={`${darkState ? "" : "dark"}`}>
-      {menu ? (
+    <main className={darkState ? 'dark' : ''}>
+      {/* {menu ? (
         <Menu
           menu={menu}
           setMenu={setMenu}
@@ -39,7 +40,7 @@ export default function Home() {
           toggleDarkMode={toggleDarkMode}
           darkState={darkState}
         />
-      ) : (
+      ) : ( */}
         <div
           className={`flex justify-center items-center w-[100vw] dark:bg-black`}
         >
@@ -52,14 +53,14 @@ export default function Home() {
               darkState={darkState}
             />
             <Introduction />
-            <Hero/>
-            <Skills darkState={darkState}/>
-            <Experience/>
-            <Work/>
-            <Contacts/>
+            <Hero />
+            <Skills darkState={darkState} />
+            <Experience />
+            <Work />
+            <Contacts />
           </div>
         </div>
-      )}
+      {/* )} */}
     </main>
   );
 }
